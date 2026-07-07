@@ -323,3 +323,30 @@ intro.style.display="none";
 },8500);
 
 });
+
+/* Floating Leaves */
+
+function createLeaf(){
+
+let leaf=document.createElement("div");
+
+leaf.className="leaf";
+
+leaf.innerHTML="🍃";
+
+leaf.style.left=Math.random()*100+"vw";
+
+leaf.style.animationDuration=(6+Math.random()*6)+"s";
+
+document.body.appendChild(leaf);
+
+setTimeout(()=>{
+
+leaf.remove();
+
+},12000);
+
+}
+
+setInterval(createLeaf,900);
+});
