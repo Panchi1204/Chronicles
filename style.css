@@ -799,5 +799,56 @@ width:4px;
 height:80px;
 
 }
+   .magic-firefly{
+
+position:fixed;
+
+width:8px;
+
+height:8px;
+
+border-radius:50%;
+
+background:#ffe066;
+
+box-shadow:0 0 15px #ffe066;
+
+pointer-events:none;
+
+animation:floatFirefly 6s ease-in-out infinite;
+
+z-index:999;
+
+opacity:.8;
+
+}
+
+@keyframes floatFirefly{
+
+0%{
+
+transform:translateY(0);
+
+opacity:.2;
+
+}
+
+50%{
+
+transform:translateY(-120px);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-220px);
+
+opacity:0;
+
+}
+
+}
 
 }
