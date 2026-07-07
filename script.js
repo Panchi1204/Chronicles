@@ -301,3 +301,25 @@ createMagicFireflies();
 
 
 });
+
+/* ==========================
+INTRO SCREEN
+========================== */
+
+window.addEventListener("load",()=>{
+
+const intro=document.getElementById("intro");
+
+setTimeout(()=>{
+
+intro.style.opacity="0";
+
+setTimeout(()=>{
+
+intro.style.display="none";
+
+},2000);
+
+},8500);
+
+});
