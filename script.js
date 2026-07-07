@@ -209,5 +209,95 @@ if(clicked===20){
 alert("🌿 One Last Page\n\nDear Ullu...\n\nThank you for sitting at that Tea Post table two years ago.\n\nIf that misunderstanding had never happened...\nperhaps this story would've never been written.\n\nHappy 730 Days ❤️\n\n— Chuhiya");
 
 }
+   /* ==========================
+   STORMS V2
+========================== */
+
+const storm=document.querySelector(".storm");
+
+function lightning(){
+
+if(!storm) return;
+
+storm.animate([
+
+{
+filter:"brightness(1)"
+},
+
+{
+filter:"brightness(2.4)"
+},
+
+{
+filter:"brightness(1)"
+}
+
+],{
+
+duration:220
+
+});
+
+}
+
+setInterval(()=>{
+
+if(Math.random()>0.45){
+
+lightning();
+
+}
+
+},5000);
+
+   const highlight=document.querySelector(".highlight");
+
+if(highlight){
+
+const sunObserver=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+storm.style.transition="3s";
+
+storm.style.background=
+
+"linear-gradient(180deg,#334b61,#496e67,#7aa85c)";
+
+}
+
+});
+
+},{threshold:.8});
+
+sunObserver.observe(highlight);
+
+}
+
+   function createMagicFireflies(){
+
+for(let i=0;i<30;i++){
+
+let firefly=document.createElement("div");
+
+firefly.className="magic-firefly";
+
+firefly.style.left=Math.random()*100+"vw";
+
+firefly.style.top=(70+Math.random()*30)+"vh";
+
+firefly.style.animationDelay=Math.random()*5+"s";
+
+document.body.appendChild(firefly);
+
+}
+
+}
+
+createMagicFireflies();
+
 
 });
