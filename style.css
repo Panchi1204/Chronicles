@@ -178,43 +178,15 @@ margin-bottom:15px;
 
 }
 
-#hero h1{
+.book h1{
 
-font-size:78px;
+font-size:52px;
 
 font-family:'Cormorant Garamond',serif;
 
-color:#fff7d6;
+margin-bottom:20px;
 
-text-shadow:
-
-0 0 12px rgba(255,220,120,.6),
-
-0 0 35px rgba(255,200,80,.45),
-
-0 0 70px rgba(255,180,50,.25);
-
-animation:titleFloat 5s ease-in-out infinite;
-
-}
-
-@keyframes titleFloat{
-
-0%{
-
-transform:translateY(0px);
-
-}
-
-50%{
-
-transform:translateY(-8px);
-
-}
-
-100%{
-
-transform:translateY(0px);
+color:#365c3c;
 
 }
 .subtitle{
