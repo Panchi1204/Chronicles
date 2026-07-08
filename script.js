@@ -7,20 +7,27 @@
 const music = document.getElementById("bgMusic");
 const startBtn = document.getElementById("startBtn");
 
-if(startBtn){
-    startBtn.addEventListener("click", () => {
+startBtn.addEventListener("click", async () => {
+
+    try{
 
         music.volume = 0.35;
 
-        music.play();
+        await music.play();
 
-        document.getElementById("chapter1").scrollIntoView({
-            behavior: "smooth"
-        });
+    }catch(err){
+
+        console.log("Music couldn't start:", err);
+
+    }
+
+    document.getElementById("chapter1").scrollIntoView({
+
+        behavior:"smooth"
 
     });
-}
 
+});
 
 // Fade Animation
 
