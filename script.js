@@ -1,44 +1,92 @@
-/* =====================================
+/* ==========================================
    THE CHRONICLES OF CHUHIYA & ULLU
-   JavaScript
-===================================== */
+   JavaScript V2
+========================================== */
 
-// Background Music
+// ---------- Elements ----------
+
 const music = document.getElementById("bgMusic");
 const startBtn = document.getElementById("startBtn");
+const intro = document.getElementById("intro");
+const storm = document.querySelector(".storm");
+const lantern = document.querySelector(".lantern");
 
-startBtn.addEventListener("click", async () => {
 
-    try{
+// ---------- Intro ----------
 
-        music.volume = 0.35;
+window.addEventListener("load", () => {
 
-        await music.play();
+    if(intro){
 
-    }catch(err){
+        setTimeout(()=>{
 
-        console.log("Music couldn't start:", err);
+            intro.style.opacity="0";
+
+            setTimeout(()=>{
+
+                intro.style.display="none";
+
+            },2000);
+
+        },8500);
 
     }
 
-    document.getElementById("chapter1").scrollIntoView({
+});
 
-        behavior:"smooth"
 
-    });
+// ---------- Start Button ----------
+
+if(startBtn){
+
+startBtn.addEventListener("click", async ()=>{
+
+    if(music){
+
+        music.volume=0.35;
+
+        try{
+
+            await music.play();
+
+        }
+
+        catch(err){
+
+            console.log(err);
+
+        }
+
+    }
+
+    const chapter=document.getElementById("chapter1");
+
+    if(chapter){
+
+        chapter.scrollIntoView({
+
+            behavior:"smooth"
+
+        });
+
+    }
 
 });
 
-// Fade Animation
+}
 
-const observer = new IntersectionObserver((entries)=>{
+
+// ---------- Fade Sections ----------
+
+const observer=new IntersectionObserver(entries=>{
 
 entries.forEach(entry=>{
 
 if(entry.isIntersecting){
 
 entry.target.style.opacity="1";
-entry.target.style.transform="translateY(0px)";
+
+entry.target.style.transform="translateY(0)";
 
 }
 
@@ -62,15 +110,16 @@ observer.observe(section);
 });
 
 
-// Mouse movement effect
+// ---------- Mouse Parallax ----------
 
-document.addEventListener("mousemove",(e)=>{
+document.addEventListener("mousemove",e=>{
 
 const fireflies=document.querySelector(".fireflies");
 
 if(fireflies){
 
 fireflies.style.transform=
+
 `translate(${e.clientX*0.01}px,${e.clientY*0.01}px)`;
 
 }
@@ -78,9 +127,7 @@ fireflies.style.transform=
 });
 
 
-// Lantern Glow
-
-const lantern=document.querySelector(".lantern");
+// ---------- Lantern ----------
 
 if(lantern){
 
@@ -93,11 +140,11 @@ lantern.classList.toggle("bright");
 }
 
 
-// Story Quotes Animation
+// ---------- Quote Animation ----------
 
 const quotes=document.querySelectorAll(".fade");
 
-const quoteObserver=new IntersectionObserver((entries)=>{
+const quoteObserver=new IntersectionObserver(entries=>{
 
 entries.forEach(entry=>{
 
@@ -106,13 +153,19 @@ if(entry.isIntersecting){
 entry.target.animate([
 
 {
+
 opacity:0,
+
 transform:"translateY(40px)"
+
 },
 
 {
+
 opacity:1,
+
 transform:"translateY(0)"
+
 }
 
 ],{
@@ -132,29 +185,7 @@ fill:"forwards"
 quotes.forEach(q=>quoteObserver.observe(q));
 
 
-// Ending Confetti
-
-const ending=document.getElementById("ending");
-
-const endObserver=new IntersectionObserver((entries)=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-createFireflies();
-
-}
-
-});
-
-});
-
-if(ending){
-
-endObserver.observe(ending);
-
-}
+// ---------- Ending Fireflies ----------
 
 function createFireflies(){
 
@@ -202,65 +233,73 @@ star.remove();
 
 }
 
+const ending=document.getElementById("ending");
 
-// Hidden Ending
+if(ending){
 
-let clicked=0;
+const endObserver=new IntersectionObserver(entries=>{
 
-document.body.addEventListener("click",()=>{
+entries.forEach(entry=>{
 
-clicked++;
+if(entry.isIntersecting){
 
-if(clicked===20){
-
-alert("🌿 One Last Page\n\nDear Ullu...\n\nThank you for sitting at that Tea Post table two years ago.\n\nIf that misunderstanding had never happened...\nperhaps this story would've never been written.\n\nHappy 730 Days ❤️\n\n— Chuhiya");
+createFireflies();
 
 }
-   /* ==========================
-   STORMS V2
-========================== */
 
-const storm=document.querySelector(".storm");
+});
+
+});
+
+endObserver.observe(ending);
+
+}
+// ==========================================
+// STORMS V2
+// ==========================================
 
 function lightning(){
 
-if(!storm) return;
+    if(!storm) return;
 
-storm.animate([
+    storm.animate([
 
-{
-filter:"brightness(1)"
-},
+        {
+            filter:"brightness(1)"
+        },
 
-{
-filter:"brightness(2.4)"
-},
+        {
+            filter:"brightness(2.4)"
+        },
 
-{
-filter:"brightness(1)"
-}
+        {
+            filter:"brightness(1)"
+        }
 
-],{
+    ],{
 
-duration:220
+        duration:220
 
-});
+    });
 
 }
 
 setInterval(()=>{
 
-if(Math.random()>0.45){
+    if(Math.random()>0.45){
 
-lightning();
+        lightning();
 
-}
+    }
 
 },5000);
 
-   const highlight=document.querySelector(".highlight");
 
-if(highlight){
+// ---------- Sunlight After Storm ----------
+
+const highlight=document.querySelector(".highlight");
+
+if(highlight && storm){
 
 const sunObserver=new IntersectionObserver(entries=>{
 
@@ -284,7 +323,10 @@ sunObserver.observe(highlight);
 
 }
 
-   function createMagicFireflies(){
+
+// ---------- Floating Magic Fireflies ----------
+
+function createMagicFireflies(){
 
 for(let i=0;i<30;i++){
 
@@ -307,31 +349,7 @@ document.body.appendChild(firefly);
 createMagicFireflies();
 
 
-});
-
-/* ==========================
-INTRO SCREEN
-========================== */
-
-window.addEventListener("load",()=>{
-
-const intro=document.getElementById("intro");
-
-setTimeout(()=>{
-
-intro.style.opacity="0";
-
-setTimeout(()=>{
-
-intro.style.display="none";
-
-},2000);
-
-},8500);
-
-});
-
-/* Floating Leaves */
+// ---------- Floating Leaves ----------
 
 function createLeaf(){
 
@@ -356,4 +374,34 @@ leaf.remove();
 }
 
 setInterval(createLeaf,900);
+
+
+// ---------- Hidden Ending ----------
+
+let clicked=0;
+
+document.body.addEventListener("click",()=>{
+
+clicked++;
+
+if(clicked===20){
+
+alert(
+`🌿 One Last Page
+
+Dear Ullu...
+
+Thank you for sitting at that Tea Post table two years ago.
+
+If that misunderstanding had never happened...
+
+perhaps this story would've never been written.
+
+Happy 730 Days ❤️
+
+— Chuhiya`
+);
+
+}
+
 });
